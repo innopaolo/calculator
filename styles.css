@@ -6,7 +6,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-size: cover;
+    background-image: url("math.jpg");
+    background-size: auto;
 }
 
 #calculator {
