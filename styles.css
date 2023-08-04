@@ -64,3 +64,16 @@ body {
     margin-right: 10px;
 }
 
+#keyContainer {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 410px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    background-color: silver;
+    border-radius: 20px;
+    margin-left: 20px auto;
+    padding-right: 8px;
+    border: 2px solid black;
+}
+
