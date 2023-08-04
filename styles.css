@@ -1,7 +1,4 @@
-@font-face {
-    font-family:digital-7mono;
-    src: url('assets/digital-7/digital-7mono.ttf');
-}
+@import url(https://allfont.net/allfont.css?fonts=digital-7-mono);
 
 body {
     width: 100%;
@@ -38,7 +35,7 @@ body {
 }
 
 #screen {
-    font-family: digital-7mono;
+    font-family: "digital-7 mono", arial;
     font-size: 58px;
     width: 90%;
     height: 70px;
@@ -55,7 +52,7 @@ body {
 #screenOp{
     width: 10%;
     height: 70px;
-    font-family: digital-7mono;
+    font-family: "digital-7 mono", arial;
     font-size: 50px;
     background-color: rgb(69, 105, 102);
     display: flex;
