@@ -108,6 +108,7 @@ body {
     background: #7f857e;
     height: 100%;
     border-radius: 16px;
+    padding-bottom: 10px;
     /* Raises clickable area of button above outer border */
     margin-top: -15px;
     /* Suggests empty space between button and outer div and curved surface */
