@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Digital-7';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Digital-7'), local('Digital-7-Regular'),
+        url(/home/inodlz/repos/calculator/Digital-7_Mono/-7__mono_.woff) format('woff'),
+        url(/home/inodlz/repos/calculator/Digital-7_Mono/digital-7__mono_.ttf) format('truetype');
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -33,7 +42,7 @@ body {
 }
 
 #screen {
-    font-family: "digital-7", arial;
+    font-family: "Digital-7", arial;
     font-size: 58px;
     width: 90%;
     height: 70px;
@@ -51,7 +60,7 @@ body {
 #screenOp{
     width: 10%;
     height: 70px;
-    font-family: "digital-7", arial;
+    font-family: "Digital-7", arial;
     font-size: 50px;
     background-color: rgb(69, 105, 102);
     display: flex;
