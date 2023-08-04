@@ -77,3 +77,8 @@ body {
     border: 2px solid black;
 }
 
+.column {
+    margin: 5px;
+    padding-bottom: 15px;
+}
+
