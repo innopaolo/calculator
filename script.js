@@ -73,8 +73,16 @@ function updateSpecial(event, id) {
             screen.textContent = "8 0 0 8 5";
             break;
         case "+/-":
-            let array = screen.textContent[0];
-            console.log(array);  
+            let array = screen.textContent.split("");
+            if (array[0] !== "-" ) {
+                array.unshift("-");
+                let negative = array.join("");
+                screen.textContent = negative;
+            } else {
+                array.shift();
+                let positive = array.join("");
+                screen.textContent = positive;
+            } 
             break;
         case "=":
             // Code for "=" case 
