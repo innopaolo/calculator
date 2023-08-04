@@ -110,11 +110,12 @@ body {
     background: #7f857e;
     height: 100%;
     border-radius: 16px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     /* Raises clickable area of button above outer border */
     margin-top: -15px;
     /* Suggests empty space between button and outer div and curved surface */
     box-shadow: rgba(0,0,0,0.85) 0px 1px 1px, inset rgba(0,0,0,0.35) 0px -2px 8px;
+    transition: all 0.1s ease-in-out;
 }
 
 .button .outer .height .inner {
@@ -130,5 +131,28 @@ body {
     border-radius: 12px;
 }
 
+.button:hover .outer .height {
 
+    /* This moves the button down for some 
+    reason... (it acts normal around -17px) */
+    margin-top: -10px;
+    /* Creates the illusion of the button depressing 
+    into the outer div (from 15px to 10px) */
+    padding-bottom: 10px;
+}
 
+/* Button will further depress on click */
+.button:active .outer .height {
+	margin-top: 0px;
+	padding-bottom: 0px;
+}
+
+.button:hover .outer .height .inner {
+	text-shadow: #99f48d 0px 0px 1px;
+}
+
+.button:active .outer .height .inner{
+	text-shadow: #7e887c 0px 1px 0px;
+	border-radius: 16px;
+	box-shadow: inset rgba(0,0,0,0.9) 0px 0px 8px;
+}
