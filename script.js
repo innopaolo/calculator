@@ -16,9 +16,16 @@ function updateScreen(event, id) {
 
     // Check if another key is pressed when "80085" is already displayed
     if (currentContent === "8 0 0 8 5") {
+
         // Replace "80085" with the new number
         screen.textContent = newContent;
+
     } else if (currentContent.length <= maxWidth) {
+
+        // Ensure only one decimal is included
+        if (newContent === "." && currentContent.includes(".")) {
+            return;
+        }
         // Append the new number to the existing content
         screen.textContent += newContent;
     }
