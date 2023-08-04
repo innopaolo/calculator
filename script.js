@@ -1,6 +1,11 @@
 let screen = document.querySelector("#screen");
 let screenOp = document.querySelector("#screenOp");
 
+// Ensures 0 as initial value on screen
+window.addEventListener("load", () => {
+    screen.textContent = "0";
+});
+
 // Update screen with numbers
 let numbers = document.querySelectorAll(".num")
 
@@ -26,8 +31,14 @@ function updateScreen(event, id) {
         if (newContent === "." && currentContent.includes(".")) {
             return;
         }
-        // Append the new number to the existing content
-        screen.textContent += newContent;
+
+        // Replace initial value 0 if number, if decimal append to it
+        if (currentContent === "0" && newContent !== ".") {
+            screen.textContent = newContent;
+        } else {
+            // Append number to the existing content
+            screen.textContent += newContent;
+        }
     }
 }
 
@@ -52,7 +63,7 @@ specialKeys.forEach(key => {
 function updateSpecial(event, id) {
     switch (id) {
         case "AC":
-            screen.textContent = "";
+            screen.textContent = "0";
             screenOp.textContent = "";
             break;
         case "C":
