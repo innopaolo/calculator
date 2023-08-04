@@ -114,7 +114,18 @@ body {
     box-shadow: rgba(0,0,0,0.85) 0px 1px 1px, inset rgba(0,0,0,0.35) 0px -2px 8px;
 }
 
-
+.button .outer .height .inner {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-shadow: #8aff7b 0px 0px 1px;
+    background: #3b3c46;
+    color: rgb(214,212,212);
+    line-height: 2em;
+    font-size: 35px;
+    letter-spacing: .05em;
+    border-radius: 12px;
+}
 
 
 
