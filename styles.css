@@ -44,7 +44,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin: 20px auto auto 10px;
-    /* Right edge will join screenOp */
+    /* Right side no radius because it will join screenOp */
     border-radius: 5px 0 0 5px;  
 }
 
@@ -61,6 +61,8 @@ body {
     border-radius: 0 5px 5px 0;
     margin: 20px auto;
     margin-right: 10px;
+    /* Adds space between number and operator */
+    padding-left: 10px;
 }
 
 #keyContainer {

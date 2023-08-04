@@ -22,3 +22,4 @@ function updateScreenOp(event) {
     let screenOp = document.querySelector("#screenOp");
     screenOp.textContent = " " + event.target.textContent;
 }
+
