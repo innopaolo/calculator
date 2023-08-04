@@ -10,5 +10,15 @@ function updateScreen(event) {
     screen.textContent = event.target.textContent;
 }
 
+
 // Update screen with operators
 let operators = document.querySelectorAll(".op");
+
+operators.forEach(key => {
+    key.addEventListener("click", updateScreenOp)
+})
+
+function updateScreenOp(event) {
+    let screenOp = document.querySelector("#screenOp");
+    screenOp.textContent = " " + event.target.textContent;
+}
