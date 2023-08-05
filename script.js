@@ -1,5 +1,7 @@
 let screen = document.querySelector("#screen");
 let screenOp = document.querySelector("#screenOp");
+let previousNumber = null;
+
 // State variable to keep track of when the screen is replaced by new number
 let currentOperation = "default";  
 
@@ -12,10 +14,10 @@ window.addEventListener("load", () => {
 let numbers = document.querySelectorAll(".num")
 
 numbers.forEach(key => {
-    key.addEventListener("click", (event) => updateScreen(event, key.id))
+    key.addEventListener("click", () => updateScreen(key.id))
 })
 
-function updateScreen(event, id) {
+function updateScreen(id) {
     let currentContent = screen.textContent;
     let newContent =  id;
 
@@ -45,23 +47,18 @@ function updateScreen(event, id) {
 
                 if (currentOperation === "append") {
                     screen.textContent += newContent;
-                    console.log(previous + screen.textContent);
                     return; 
                 }
 
-                previous = parseFloat(currentContent);
+                previousNumber = parseFloat(currentContent);
                 screen.textContent = newContent;
                 currentOperation = "append";
-                
-                
             
             } else {
                 screen.textContent += newContent;
             }
         }    
     }
-
-
 }
 
 // Update screen with operators
@@ -69,13 +66,13 @@ let operators = document.querySelectorAll(".op");
 
 operators.forEach(key => {
     key.addEventListener("click", () => updateScreenOp(key.id))
-})
+});
 
 function updateScreenOp(id) {
     screenOp.textContent = id;
 
     if (currentOperation === "append") {
-        
+        updateSpecial("=", id, previousNumber, parseFloat(screen.textContent));
     }
 }
 
@@ -112,19 +109,27 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
                 screen.textContent = positive;
             } 
             break;
-        case "=":             
-            // Perform the addition based on the previous operator
+        case "=":
+            let result;
             switch (operator) {
                 case "+":
-                    screen.textContent = (previousNumber + newNumber).toString();
+                    result = previousNumber + newNumber;
                     break;
                 case "-":
+                    result = previousNumber - newNumber;
                     break;
                 case "*":
+                    result = previousNumber * newNumber;
                     break;
                 case "/":
+                    result = previousNumber / newNumber;
                     break;
             }
+            // Show only decimal when not an integer
+            let formattedResult = result % 1 === 0 ? result : result.toFixed(8);
+            screen.textContent = formattedResult;
+            screenOp.textContent = "";
+            currentOperation = "default";
             break;
-    }
+    }   
 }
