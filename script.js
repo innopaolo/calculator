@@ -1,5 +1,7 @@
 let screen = document.querySelector("#screen");
 let screenOp = document.querySelector("#screenOp");
+// State variable to keep track of when the screen is replaced by new number
+let currentOperation = "default";  
 
 // Ensures 0 as initial value on screen
 window.addEventListener("load", () => {
@@ -17,7 +19,9 @@ function updateScreen(event, id) {
     let currentContent = screen.textContent;
     let newContent =  id;
 
+    // Screen width measured by characters
     let maxWidth = 10;
+
 
     // Check if another key is pressed when "80085" is already displayed
     if (currentContent === "8 0 0 8 5") {
@@ -36,35 +40,59 @@ function updateScreen(event, id) {
         if (currentContent === "0" && newContent !== ".") {
             screen.textContent = newContent;
         } else {
-            // Append number to the existing content
-            screen.textContent += newContent;
-        }
+            // Append number to the existing content and change current operation mode
+            if (screenOp.textContent) {
+
+                if (currentOperation === "append") {
+                    screen.textContent += newContent;
+                    console.log(previous + screen.textContent);
+                    return; 
+                }
+
+                previous = parseFloat(currentContent);
+                screen.textContent = newContent;
+                currentOperation = "append";
+                
+                
+            
+            } else {
+                screen.textContent += newContent;
+            }
+        }    
     }
+
+
 }
 
 // Update screen with operators
 let operators = document.querySelectorAll(".op");
 
 operators.forEach(key => {
-    key.addEventListener("click", (event) => updateScreenOp(event, key.id))
+    key.addEventListener("click", () => updateScreenOp(key.id))
 })
 
-function updateScreenOp(event, id) {
+function updateScreenOp(id) {
     screenOp.textContent = id;
+
+    if (currentOperation === "append") {
+        
+    }
 }
 
 // Add functionality to special keys
 let specialKeys = document.querySelectorAll(".special");
 
 specialKeys.forEach(key => {
-    key.addEventListener("click", (event) => updateSpecial(event, key.id))
+    key.addEventListener("click", () => updateSpecial(key.id))
 })
 
-function updateSpecial(event, id) {
+function updateSpecial(id, operator, previousNumber, newNumber) {
     switch (id) {
         case "AC":
             screen.textContent = "0";
             screenOp.textContent = "";
+            currentOperation = "default";
+
             break;
         case "C":
             // Code for "C" case 
@@ -84,8 +112,19 @@ function updateSpecial(event, id) {
                 screen.textContent = positive;
             } 
             break;
-        case "=":
-            // Code for "=" case 
+        case "=":             
+            // Perform the addition based on the previous operator
+            switch (operator) {
+                case "+":
+                    screen.textContent = (previousNumber + newNumber).toString();
+                    break;
+                case "-":
+                    break;
+                case "*":
+                    break;
+                case "/":
+                    break;
+            }
             break;
     }
 }
