@@ -31,6 +31,10 @@ function updateScreen(id) {
         equationFinished = "no"; 
     }
 
+    if (screen.style.fontSize === "25px") {
+        screen.style.fontSize = "58px";
+    }
+
     if (currentContent === "80085" || currentContent === "ERROR") {
         screen.textContent = newContent;
 
@@ -142,6 +146,7 @@ function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
                     break;
                 case "/":
                     result = previousNumber / newNumber;
+                    
                     break;
                 default:
                     screen.textContent = "ERROR";
@@ -150,7 +155,15 @@ function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
             }
             // Show only decimal when not an integer
             let formattedResult = result % 1 === 0 ? result : result.toFixed(8);
+           
             screen.textContent = parseFloat(formattedResult);
+
+            // If user divides by zero
+            if (formattedResult === "Infinity") {
+                let message = "to infinity and beyond!";
+                screen.style.fontSize = "25px"; 
+                screen.textContent = message;
+            }
             
             // Shows the next operator to be used
             screenOp.textContent = currOp;
