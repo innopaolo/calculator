@@ -123,7 +123,7 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
             } 
             break;
         case "=":
-            let result;
+            let result = null;
             switch (operator) {
                 case "+":
                     result = previousNumber + newNumber;
@@ -131,7 +131,7 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
                 case "-":
                     result = previousNumber - newNumber;
                     break;
-                case "*":
+                case "x":
                     result = previousNumber * newNumber;
                     break;
                 case "/":
