@@ -2,8 +2,9 @@ let screen = document.querySelector("#screen");
 let screenOp = document.querySelector("#screenOp");
 let previousNumber = null;
 
-// State variable to keep track of when the screen is replaced by new number
-let currentOperation = "default";  
+// State variables to keep track of when the screen is replaced by new number
+let currentOperation = "default";
+let equationFinished = "no"  
 
 // Ensures 0 as initial value on screen
 window.addEventListener("load", () => {
@@ -26,7 +27,7 @@ function updateScreen(id) {
 
 
     // Check if another key is pressed when "80085" is already displayed
-    if (currentContent === "8 0 0 8 5") {
+    if (currentContent === "80085" || currentContent === "ERROR") {
 
         // Replace "80085" with the new number
         screen.textContent = newContent;
@@ -101,7 +102,7 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
             // Code for "C" case 
             break;
         case "?":
-            screen.textContent = "8 0 0 8 5";
+            screen.textContent = "80085";
             break;
         case "+/-":
             let array = screen.textContent.split("");
@@ -132,13 +133,15 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
                     break;
                 default:
                     screen.textContent = "ERROR";
+                    screenOp.textContent = "";
                     break;
             }
             // Show only decimal when not an integer
             let formattedResult = result % 1 === 0 ? result : result.toFixed(8);
-            screen.textContent = formattedResult;
+            screen.textContent = parseFloat(formattedResult);
             screenOp.textContent = "";
             currentOperation = "default";
+            equationFinished = "yes";
             break;
     }   
 }
