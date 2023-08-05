@@ -2,7 +2,7 @@ let screen = document.querySelector("#screen");
 let screenOp = document.querySelector("#screenOp");
 let previousNumber = null;
 
-// State variables to keep track of when the screen is replaced by new number
+// Flag variables to keep track of when the screen is replaced by new input
 let currentOperation = "default";
 let equationFinished = "no"  
 
@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
     screen.textContent = "0";
 });
 
-// Update screen with numbers
+// Main function to update screen with numbers
 let numbers = document.querySelectorAll(".num")
 
 numbers.forEach(key => {
@@ -31,10 +31,7 @@ function updateScreen(id) {
         equationFinished = "no"; 
     }
 
-    // Check if another key is pressed when "80085" is already displayed
     if (currentContent === "80085" || currentContent === "ERROR") {
-
-        // Replace "80085" with the new number
         screen.textContent = newContent;
 
     } else if (currentContent.length <= maxWidth) {
@@ -44,7 +41,7 @@ function updateScreen(id) {
             return;
         }
 
-        // Replace initial value 0 if number, if decimal append to it
+        // Replace the initial value 0 to number, if decimal append to it
         if (currentContent === "0" && newContent !== ".") {
             screen.textContent = newContent;
         } else {
@@ -79,8 +76,13 @@ function updateScreenOp(id) {
     screenOp.textContent = id;
 
     if (id === "=") {
-        updateSpecial("=", prevOp, previousNumber, parseFloat(screen.textContent));
-        screenOp.textContent = "";
+        if (previousNumber === null || equationFinished === "yes") {
+            screenOp.textContent = "";
+            return;
+        } else {
+            updateSpecial("=", prevOp, previousNumber, parseFloat(screen.textContent));
+            screenOp.textContent = "";
+        }
     }
 
     // When it is the 2nd part of the equation and an operator is clicked
@@ -106,7 +108,10 @@ function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
             previousNumber = null;
             break;
         case "C":
-            // Code for "C" case 
+            screen.textContent = screen.textContent.slice(0, -1);
+            if (screen.textContent === "") {
+                screen.textContent = 0;
+            }
             break;
         case "?":
             screen.textContent = "80085";
