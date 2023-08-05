@@ -105,6 +105,9 @@ specialKeys.forEach(key => {
 function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
     switch (id) {
         case "AC":
+            if (screen.style.fontSize === "25px") {
+                screen.style.fontSize = "58px";
+            }
             screen.textContent = "0";
             screenOp.textContent = "";
             currentOperation = "default";
@@ -118,6 +121,9 @@ function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
             }
             break;
         case "?":
+            if (screen.style.fontSize === "25px") {
+                screen.style.fontSize = "58px";
+            }
             screen.textContent = "80085";
             break;
         case "+/-":
