@@ -25,6 +25,11 @@ function updateScreen(id) {
     // Screen width measured by characters
     let maxWidth = 10;
 
+    if (equationFinished === "yes") {
+        previousNumber = null;
+        screen.textContent = ""; 
+        equationFinished = "no"; 
+    }
 
     // Check if another key is pressed when "80085" is already displayed
     if (currentContent === "80085" || currentContent === "ERROR") {
@@ -96,7 +101,8 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
             screen.textContent = "0";
             screenOp.textContent = "";
             currentOperation = "default";
-
+            equationFinished = "yes";
+            previousNumber = null;
             break;
         case "C":
             // Code for "C" case 
@@ -139,8 +145,8 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
             // Show only decimal when not an integer
             let formattedResult = result % 1 === 0 ? result : result.toFixed(8);
             screen.textContent = parseFloat(formattedResult);
-            screenOp.textContent = "";
             currentOperation = "default";
+            screenOp.textContent = "";
             equationFinished = "yes";
             break;
     }   
