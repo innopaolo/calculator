@@ -83,8 +83,9 @@ function updateScreenOp(id) {
         screenOp.textContent = "";
     }
 
+    // When it is the 2nd part of the equation and an operator is clicked
     if (currentOperation === "append") {
-        updateSpecial("=", id, previousNumber, parseFloat(screen.textContent));
+        updateSpecial("=", prevOp, previousNumber, parseFloat(screen.textContent), id);
     }
 }
 
@@ -95,7 +96,7 @@ specialKeys.forEach(key => {
     key.addEventListener("click", () => updateSpecial(key.id))
 })
 
-function updateSpecial(id, operator, previousNumber, newNumber) {
+function updateSpecial(id, operator, previousNumber, newNumber, currOp) {
     switch (id) {
         case "AC":
             screen.textContent = "0";
@@ -145,8 +146,11 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
             // Show only decimal when not an integer
             let formattedResult = result % 1 === 0 ? result : result.toFixed(8);
             screen.textContent = parseFloat(formattedResult);
+            
+            // Shows the next operator to be used
+            screenOp.textContent = currOp;
+
             currentOperation = "default";
-            screenOp.textContent = "";
             equationFinished = "yes";
             break;
     }   
