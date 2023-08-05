@@ -3,8 +3,8 @@
     font-style: normal;
     font-weight: 400;
     src: local('Digital-7'), local('Digital-7-Regular'),
-        url(/home/inodlz/repos/calculator/Digital-7_Mono/-7__mono_.woff) format('woff'),
-        url(/home/inodlz/repos/calculator/Digital-7_Mono/digital-7__mono_.ttf) format('truetype');
+        url("Digital-7_Mono/-7__mono_.woff") format('woff'),
+        url("Digital-7_Mono/digital-7__mono_.ttf") format('truetype');
 }
 
 body {
