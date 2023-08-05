@@ -69,7 +69,13 @@ operators.forEach(key => {
 });
 
 function updateScreenOp(id) {
+    let prevOp = screenOp.textContent;
     screenOp.textContent = id;
+
+    if (id === "=") {
+        updateSpecial("=", prevOp, previousNumber, parseFloat(screen.textContent));
+        screenOp.textContent = "";
+    }
 
     if (currentOperation === "append") {
         updateSpecial("=", id, previousNumber, parseFloat(screen.textContent));
@@ -123,6 +129,9 @@ function updateSpecial(id, operator, previousNumber, newNumber) {
                     break;
                 case "/":
                     result = previousNumber / newNumber;
+                    break;
+                default:
+                    screen.textContent = "ERROR";
                     break;
             }
             // Show only decimal when not an integer
